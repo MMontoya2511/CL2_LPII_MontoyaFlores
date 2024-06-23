@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Dao.ClassUsuarioImp;
+import model.TblUsuariocl2;
+
 /**
  * Servlet implementation class ControladorUsuario
  */
@@ -17,14 +20,14 @@ public class ControladorUsuario extends HttpServlet {
      */
     public ControladorUsuario() {
         super();
-        // TODO Auto-generated constructor stub
+
     } //fin del controlador
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	} // fin de doGET
 
@@ -32,7 +35,25 @@ public class ControladorUsuario extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		//recuperamos valores
+		String usuario = request.getParameter("usuario");
+		String password= request.getParameter("password");
+		
+		//instanciando
+		TblUsuariocl2 registroUsuario = new TblUsuariocl2();
+		ClassUsuarioImp  crud = new ClassUsuarioImp();
+		
+		//asignando valores
+		registroUsuario.setUsuarioCL2(usuario);
+		registroUsuario.setPasswordCL2(password);	
+		
+		//llamamos a registrar
+		crud.RegistrarUsuario(registroUsuario);
+		
+		//redireccionamos
+		response.sendRedirect("index.jsp");
+		
 		doGet(request, response);
 	} //fin de doPost
 
