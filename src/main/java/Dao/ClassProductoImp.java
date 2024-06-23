@@ -25,7 +25,7 @@ public class ClassProductoImp implements IProducto{
 				em.persist(producto);
 
 				// mensaje consola
-				System.out.println("DATO REGISTRADO en la BD");
+			//	System.out.println("DATO REGISTRADO en la BD");
 
 				// confirmamos
 				em.getTransaction().commit();
